@@ -1,0 +1,40 @@
+name: Fashion Retail ML Pipeline
+
+# Menjalankan workflow setiap ada push ke branch main
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-train:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Mengambil kode dari repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. Mengatur Miniconda
+      - name: Set up Miniconda
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          auto-update-conda: true
+          python-version: "3.10"
+          activate-environment: fashion_retail_env
+          environment-file: conda.yaml
+
+      # 3. Menjalankan Model Training
+      - name: Run Modelling Script
+        shell: bash -l {0}
+        run: |
+          conda activate fashion_retail_env
+          python modelling.py
+
+      # 4. Opsional: Simpan hasil MLflow sebagai Artifact
+      - name: Upload MLflow Results
+        uses: actions/upload-artifact@v3
+        with:
+          name: mlflow-artifacts
+          path: mlruns/
