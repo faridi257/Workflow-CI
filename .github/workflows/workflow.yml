@@ -2,9 +2,9 @@ name: MLflow-CI-Pipeline
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [main, master]
   pull_request:
-    branches: [ main, master ]
+    branches: [main, master]
 
 jobs:
   training:
@@ -16,11 +16,11 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: "3.10"
 
       - name: Install Dependencies
         run: |
           pip install pandas scikit-learn mlflow
 
       - name: Run Model
-        run: python modelling.py
+        run: python ../../MLProject/modelling.py
