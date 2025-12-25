@@ -10,7 +10,7 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 def run_modelling():
     # 1. Load Data
     try:
-        df = pd.read_csv('Fashion_Retail_Sales.csv')
+        df = pd.read_csv('MLProject/Fashion_Retail_Sales.csv')
     except FileNotFoundError:
         print("File Fashion_Retail_Sales.csv tidak ditemukan!")
         return
