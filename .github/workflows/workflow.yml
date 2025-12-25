@@ -23,4 +23,4 @@ jobs:
           pip install pandas scikit-learn mlflow
 
       - name: Run Model
-        run: python ../../MLProject/modelling.py
+        run: python MLProject/modelling.py
